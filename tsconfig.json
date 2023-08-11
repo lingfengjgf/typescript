@@ -1,0 +1,6 @@
+{
+  "include": ["myFetch/*"],
+  "compilerOptions": {
+    "esModuleInterop": true
+  }
+}
