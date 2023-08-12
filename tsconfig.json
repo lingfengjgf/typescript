@@ -1,5 +1,5 @@
 {
-  "include": ["myFetch/*"],
+  "include": ["myFetch/*","clipboard/*"],
   "compilerOptions": {
     "esModuleInterop": true
   }
