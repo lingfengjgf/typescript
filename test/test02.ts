@@ -51,3 +51,58 @@ const phone:GameStatic = class CellPhone implements ClockInterface, GameInterfac
       
   }
 }
+
+// any | unknow
+
+// any - 绕过所有类型检测 => 所有的类型检测和编译筛查全部失效
+let anyVal: any = 123;
+anyVal = 'any';
+let val1:string = anyVal;
+
+// unknow - 绕过赋值检测 => 禁止更改传递
+let unknowVal: unknown;
+unknowVal = '123';
+unknowVal = true;
+
+let val2: unknown = unknowVal;
+let val3: any = unknowVal;
+// let val4: boolean = unknowVal;  // 报错
+
+
+// void | never
+
+// void - 声明函数的返回值为空
+function voidFn(): void {
+  console.log('void');
+}
+
+// never - 永不返回 或 永远返回 error
+function longlongloop(): never {
+  while(true) {}
+}
+
+function errorFn(msg: string): never {
+  throw new Error(msg)
+}
+
+
+// readonly | const
+// type CustonArr = string | number | object;
+
+const arr1 = [1, { num: 2 }, '3'];
+
+arr1[0] = 11;
+// arr1[1].num= 22;
+arr1[1]['num']= 22;
+arr1.length = 4;
+arr1.push(4);
+// arr1 = [] // 报错
+
+let arr2: ReadonlyArray< string | number | object > = [1, { num: 2 }, '3'];
+
+// arr2[0] = 11; // 报错
+// arr2[1].num= 22; // 报错
+arr2[1]['num']= 22;
+// arr2.length = 4; // 报错
+// arr2.push(4);// 报错
+// arr2 = [] // 报错
