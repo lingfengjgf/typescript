@@ -68,7 +68,6 @@ let val2: unknown = unknowVal;
 let val3: any = unknowVal;
 // let val4: boolean = unknowVal;  // 报错
 
-
 // void | never
 
 // void - 声明函数的返回值为空
@@ -76,7 +75,7 @@ function voidFn(): void {
   console.log('void');
 }
 
-// never - 永不返回 或 永远返回 error
+// never - 永不返回 或 永远抛出 error
 function longlongloop(): never {
   while(true) {}
 }
@@ -87,22 +86,42 @@ function errorFn(msg: string): never {
 
 
 // readonly | const
-// type CustonArr = string | number | object;
-
 const arr1 = [1, { num: 2 }, '3'];
 
 arr1[0] = 11;
-// arr1[1].num= 22;
-arr1[1]['num']= 22;
+typeof arr1[1] === 'object' && (arr1[1].num = 22);
 arr1.length = 4;
 arr1.push(4);
 // arr1 = [] // 报错
 
 let arr2: ReadonlyArray< string | number | object > = [1, { num: 2 }, '3'];
-
 // arr2[0] = 11; // 报错
-// arr2[1].num= 22; // 报错
-arr2[1]['num']= 22;
+// typeof arr2[1] === 'object' && (arr2[1].num= 22); // 报错
+
 // arr2.length = 4; // 报错
 // arr2.push(4);// 报错
-// arr2 = [] // 报错
+arr2 = [] // 可以将常规Array类型值赋值给ReadonlyArray类型
+// arr1 = arr2 //不能将ReadonlyArray类型分配给Array类型
+
+interface Class {
+  readonly name: string,
+  readonly info: object,
+  time: number,
+  score: object
+}
+
+
+let Lilei: Class = {
+  name: 'Lilei',
+  info: {
+    sex:'男',
+    age:'20'
+  },
+  time:2,
+  score: {Chinese: 80, Math: 90}
+}
+
+// Lilei.name = 'Hmm'; // 报错
+// Lilei.info.age= '10'; // 报错
+Lilei.time = 3;
+// Lilei.score.Chinese = 90;
