@@ -86,7 +86,11 @@ function errorFn(msg: string): never {
 
 
 // readonly | const
-const arr1 = [1, { num: 2 }, '3'];
+interface arrIndex1 {
+  num: number
+}
+
+const arr1= [1, { num: 2 }, '3'];
 
 arr1[0] = 11;
 typeof arr1[1] === 'object' && (arr1[1].num = 22);
@@ -94,9 +98,10 @@ arr1.length = 4;
 arr1.push(4);
 // arr1 = [] // 报错
 
-let arr2: ReadonlyArray< string | number | object > = [1, { num: 2 }, '3'];
+
+let arr2: ReadonlyArray< arrIndex1 > = [{ num: 1 }, { num: 2 }, { num: 3 }];
 // arr2[0] = 11; // 报错
-// typeof arr2[1] === 'object' && (arr2[1].num= 22); // 报错
+arr2[1].num= 22; 
 
 // arr2.length = 4; // 报错
 // arr2.push(4);// 报错
@@ -107,7 +112,7 @@ interface Class {
   readonly name: string,
   readonly info: object,
   time: number,
-  score: object
+  score: { Chinese: number; Math: number };
 }
 
 
@@ -115,7 +120,8 @@ let Lilei: Class = {
   name: 'Lilei',
   info: {
     sex:'男',
-    age:'20'
+    age:'20',
+    friends: ['Bob', 'Hmm']
   },
   time:2,
   score: {Chinese: 80, Math: 90}
@@ -124,4 +130,4 @@ let Lilei: Class = {
 // Lilei.name = 'Hmm'; // 报错
 // Lilei.info.age= '10'; // 报错
 Lilei.time = 3;
-// Lilei.score.Chinese = 90;
+Lilei.score.Chinese = 90;
