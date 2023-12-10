@@ -110,7 +110,7 @@ arr2 = [] // 可以将常规Array类型值赋值给ReadonlyArray类型
 
 interface Class {
   readonly name: string,
-  readonly info: object,
+  readonly info: { sex: string, age: number, friends: Array<string> },
   time: number,
   score: { Chinese: number; Math: number };
 }
@@ -120,7 +120,7 @@ let Lilei: Class = {
   name: 'Lilei',
   info: {
     sex:'男',
-    age:'20',
+    age:20,
     friends: ['Bob', 'Hmm']
   },
   time:2,
@@ -129,5 +129,6 @@ let Lilei: Class = {
 
 // Lilei.name = 'Hmm'; // 报错
 // Lilei.info.age= '10'; // 报错
+Lilei.info.friends.push('Lily');
 Lilei.time = 3;
 Lilei.score.Chinese = 90;

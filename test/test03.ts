@@ -41,7 +41,8 @@ enum Score {
   PERFECT
 }
 
-let score: Score = Score.BAD;
+let score: Score = Score.BAD; // 0
+
 
 // 反向映射
 enum Enum1 {
